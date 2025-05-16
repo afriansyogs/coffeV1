@@ -15,7 +15,13 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // pages route
 Route::get('/', [MainController::class, 'homePage'])->name('home');
+
 Route::get('/product', [MainController::class, 'productPage'])->name('product.index');
 Route::get('/product/{id}', [MainController::class, 'productDetail'])->name('product.show');
+
 Route::get('/blog', [MainController::class, 'blogPage'])->name('blog.index');
 Route::get('/blog/{id}', [MainController::class, 'blogDetail'])->name('blog.show');
+
+Route::get('/cart', [MainController::class, 'cartPage'])->name('cart.index');
+
+Route::get('/favorite', [MainController::class, 'favoritePage'])->name('favorite.index');

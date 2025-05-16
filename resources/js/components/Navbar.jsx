@@ -8,8 +8,8 @@ const Navbar = () => {
     {title:"Home", url:"/", position:"start"},
     {title:"Shop", url:"/product", position:"start"},
     {title:"Blog", url:"/blog", position:"start"},
-    {title:"Favorite", url:"", icon:"fa-solid fa-heart", position:"end"},
-    {title:"Cart", url:"", icon:"fa-solid fa-cart-shopping", position:"end"},
+    {title:"Favorite", url:"/favorite", icon:"fa-solid fa-heart", position:"end"},
+    {title:"Cart", url:"/cart", icon:"fa-solid fa-cart-shopping", position:"end"},
   ];
   const [open, setIsOpen] = useState(false)
   const pathName = window.location.pathname;
@@ -56,7 +56,7 @@ const Navbar = () => {
           <>
             <div className="flex md:space-x-2 lg:ms-4">
               {menuData.filter(item => item.position == "end").map((item, index) => (
-                <div key={index} className="rounded-full px-3 py-2 text-brown hover:bg-brown hover:text-white cursor-pointer">
+                <div key={index} className={`rounded-full px-3 py-2 text-brown hover:bg-brown hover:text-white cursor-pointer ${isActive(item.url) ? " text-white bg-brown" : ""}`}>
                   <a href={item.url} className={item.icon}></a>
                 </div>
               ))}

@@ -55,4 +55,12 @@ class MainController extends Controller
             'blogs' => $blogs
         ]);
     }
+
+    public function cartPage() {
+        return inertia::render('Cart');
+    }
+
+    public function favoritePage() {
+        return inertia::render('Favorite');
+    }
 }
