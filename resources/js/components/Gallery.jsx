@@ -13,26 +13,27 @@ const Gallery = () => {
   return(
     <>
       <section className="py-10 bg-white">
-        <div className="text-center mb-6">
-          <h2 className="text-lg font-semibold tracking-wide uppercase">Follow our Instagram <span className="text-dark-brown">#COFFE</span></h2>
-        </div>
-        <div className="flex justify-center gap-7 overflow-x-auto py-8 px-4 lg:px-0">
-          {galleryData.map((item, index) => (
-            <a
-              key={index}
-              href={item.url}
-              className="transition-transform transform duration-300 hover:scale-110 ease-in-out hover:-translate-y-3 cursor-pointer"
-            >
-              <img
-                src={item.img}
-                alt={`Instagram ${index + 1}`}
-                className="w-40 h-40 object-cover rounded-xl flex-shrink-0"
-              />
-            </a>
-          ))}
-        </div>
-
-      </section>
+  <div className="text-center mb-6 px-4">
+    <h2 className="text-lg font-semibold tracking-wide uppercase">
+      Follow our Instagram <span className="text-dark-brown">#COFFE</span>
+    </h2>
+  </div>
+  <div className="flex flex-wrap justify-center gap-4 md:gap-6 lg:gap-7 overflow-x-auto py-8 px-4 lg:px-0">
+    {galleryData.map((item, index) => (
+      <a
+        key={index}
+        href={item.url}
+        className="transition-transform transform duration-300 hover:scale-110 ease-in-out hover:-translate-y-3 cursor-pointer"
+      >
+        <img
+          src={item.img}
+          alt={`Instagram ${index + 1}`}
+          className="w-32 h-32 sm:w-36 sm:h-36 md:w-40 md:h-40 lg:w-44 lg:h-44 object-cover rounded-xl flex-shrink-0"
+        />
+      </a>
+    ))}
+  </div>
+</section>
     </>
   )
 }

@@ -29,7 +29,7 @@ const BannerSection = () => {
             <div className="relative z-10 max-w-md">
               <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gray-900">
                 SPECIAL{" "}
-                <span className="text-brown">COFFEE</span>
+              <span className="text-brown">COFFEE</span>
               </h2>
               <p className="mt-4 text-sm md:text-base text-gray-600 leading-relaxed">
                 Morbi justo vel clari non leo elementum massa. Molestie ipsum
