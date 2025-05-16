@@ -23,7 +23,7 @@ const Service = () => {
   ];
   return(
     <>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 md:gap-14 lg:gap-20 py-8 bg-transparent border-t-2 border-b-4 border-t-base-300 border-b-brown">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-10 md:gap-14 lg:gap-20 py-8 bg-transparent border-t border-b-4 border-t-brown border-b-brown">
         {serviceData.map((feature, index) => (
           <div 
             key={index} 

@@ -7,7 +7,7 @@ const Category = ({ categoryData }) => {
 
   return (
     <>
-      <div className="max-w-7xl mx-auto px-4 py-12 space-y-12">
+      <div className="max-w-7xl mx-auto px-4 pt-12 pb-8 space-y-12">
         {/* For medium screens and smaller - one category per row with alternating layout */}
         <div className="block lg:hidden bg-white">
           {categoryData.map((category, index) => {

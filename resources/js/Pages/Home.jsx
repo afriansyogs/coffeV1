@@ -23,7 +23,8 @@ const Home = () => {
       {products && <BestCoffe productData={products} />}
       <Carousel />
       {category && category.length > 0 && <Category categoryData={category} />}
-      {newArrival && newArrival.length > 0 && <CoffeMenu categoryData={newArrival} />}
+      {/* {newArrival && newArrival.length > 0 && <CoffeMenu categoryData={newArrival} />} */}
+      <CoffeMenu />
       <Sosmed />
       <Service />
       {blogs && blogs.length > 0 && <BlogSection blogs={blogs} />}

@@ -4,7 +4,7 @@ import { Link } from '@inertiajs/react';
 const BestCoffe = ({ productData = { data: [], links: [] } }) => {
   console.log(productData)
   return (
-    <div className="mt-12 mx-4">
+    <div className="mt-12 mx-auto px-4 lg:px-8">
       <div className="flex justify-between items-end mb-6">
         <h2 className="text-2xl md:text-4xl font-bold text-dark-brown">Shop Best Coffe</h2>
         <div className="flex justify-end gap-2">
