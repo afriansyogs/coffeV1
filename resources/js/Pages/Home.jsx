@@ -1,15 +1,33 @@
 import React from 'react';
+import { usePage } from '@inertiajs/react';
 import MainLayout from '../layouts/MainLayout';
 import Sosmed from '../components/Sosmed';
+import Carousel from '../components/Carousel';
+import Service from '../components/Service';
+import Category from '../components/Category';
+import BestCoffe from '../components/BestCoffe';
+import CoffeMenu from '../components/CoffeMenu';
+import BlogSection from '../components/BlogSection';
+import BannerSection from '../components/BannerSection';
+import Introduction from '../components/Introduction';
+import Gallery from '../components/Gallery';
 
 const Home = () => {
+  const { category, products, newArrival, blogs } = usePage().props;
+  // console.log(products)
+  console.log(`hai ${blogs}`)
   return(
     <>
-      <h1 className=" text-cyan-500">hau</h1>
-      <button className="btn btn-primary">Primary</button>
-      <button className="btn btn-primary">Tombol DaisyUI</button>
-      <div className="bg-blue-500 text-white p-4">Coba lihat apakah Tailwind bekerja!</div>
+      <BannerSection />
+      <Introduction />
+      {products && <BestCoffe productData={products} />}
+      <Carousel />
+      {category && category.length > 0 && <Category categoryData={category} />}
+      {newArrival && newArrival.length > 0 && <CoffeMenu categoryData={newArrival} />}
       <Sosmed />
+      <Service />
+      {blogs && blogs.length > 0 && <BlogSection blogs={blogs} />}
+      <Gallery />
     </>
   )
 }

@@ -11,7 +11,12 @@ export default {
     themes: ["light"],
   },
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'brown': '#7a4109',
+        'dark-brown': '#3d1e00'
+      }
+    },
   },
   plugins: [require("daisyui")],
 }
