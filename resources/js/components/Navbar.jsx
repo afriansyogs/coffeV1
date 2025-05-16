@@ -54,7 +54,7 @@ const Navbar = () => {
             </svg>
           </label>
           <>
-            <div className="flex space-x-3 ms-4">
+            <div className="flex md:space-x-2 lg:ms-4">
               {menuData.filter(item => item.position == "end").map((item, index) => (
                 <div key={index} className="rounded-full px-3 py-2 text-brown hover:bg-brown hover:text-white cursor-pointer">
                   <a href={item.url} className={item.icon}></a>
@@ -62,7 +62,7 @@ const Navbar = () => {
               ))}
             </div>
           </>
-          <button className="rounded-full px-3 py-2 text-brown hover:bg-brown hover:text-white lg:hidden"
+          <button className="rounded-full px-3 py-2 ms-2 text-brown hover:bg-brown hover:text-white lg:hidden"
             onClick={() => setIsOpen(!open)}>
             {open ? <i className="fa-solid fa-xmark fa-lg"></i> : <i className="fa-solid fa-bars"></i>}
           </button>
@@ -71,7 +71,7 @@ const Navbar = () => {
         {open && (
           <div className="absolute top-full left-0 w-full bg-base-100 shadow-lg lg:hidden z-50">
             <ul className="px-1 py-3 space-y-3">
-              {menuData.map((item, index) => (
+              {menuData.filter(item => item.position == "start").map((item, index) => (
                 <li key={index} className={`flex items-center px-3 ${isActive(item.url) ? "font-bold" : ""}`}>
                   <a href={item.url}>
                     <span className={`relative after:content-[''] after:block after:w-full after:h-[2px] after:bg-brown after:mt-[4px] 
@@ -83,8 +83,8 @@ const Navbar = () => {
                   </a>
                 </li>
               ))}
-              <li className="px-3">
-                <label className="input input-bordered flex items-center gap-2">
+              <li className="w-full px-3">
+                <label className="input input-bordered flex items-center gap-2 w-[340px] md:w-[730px] border-2 border-brown">
                   <input type="text" className="grow" placeholder="Search" />
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

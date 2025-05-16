@@ -8,7 +8,7 @@ const Blog = () => {
     <>
       <section className="max-w-7xl mx-auto px-6 py-12 bg-gray-50">
       {/* Header */}
-      <h1 className="text-center text-5xl font-bold text-black mt-20 mb-10">
+      <h1 className="text-center text-5xl font-bold text-dark-brown mt-14 mb-10">
         Welcome To our Blog
       </h1>
 

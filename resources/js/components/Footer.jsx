@@ -25,11 +25,13 @@ const Footer = () => {
         {/* Kolom 3: Sosial Media */}
         <div>
           <h3 className="text-lg font-semibold mb-3">Information</h3>
-          <div className="flex space-x-3">
-            <a href="#" className="hover:text-gray-400"><i className="fa-brands fa-facebook"></i></a>
-            <a href="#" className="hover:text-gray-400"><i className="fa-brands fa-twitter"></i></a>
-            <a href="#" className="hover:text-gray-400"><i className="fa-brands fa-instagram"></i></a>
-          </div>
+          <ul className="space-y-2">
+            <li><a href="#" className="hover:text-gray-400">Best Coffe</a></li>
+            <li><a href="#" className="hover:text-gray-400">Category</a></li>
+            <li><a href="#" className="hover:text-gray-400">Sosmed</a></li>
+            <li><a href="#" className="hover:text-gray-400">Service</a></li>
+            <li><a href="#" className="hover:text-gray-400">Gallery</a></li>
+          </ul>
         </div>
 
         {/* Kolom 4: Hubungi Kami */}
@@ -65,7 +67,7 @@ const Footer = () => {
 
       {/* Copyright */}
       <div className="text-center mt-6 text-sm text-white border-t-2 border-white pb-6">
-        <h1 className="mt-4">&copy; 2025 Semua Hak Dilindungi.</h1>
+        <h1 className="mt-4">&copy; 2025 Privacy Policy</h1>
       </div>
     </footer>
   );

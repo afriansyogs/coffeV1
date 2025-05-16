@@ -6,7 +6,7 @@ const BestCoffe = ({ productData = { data: [], links: [] } }) => {
   return (
     <div className="mt-12 mx-4">
       <div className="flex justify-between items-end mb-6">
-        <h2 className="text-2xl md:text-4xl font-semibold text-gray-800">Shop Best Coffe</h2>
+        <h2 className="text-2xl md:text-4xl font-bold text-dark-brown">Shop Best Coffe</h2>
         <div className="flex justify-end gap-2">
           <a href="/product" className="hidden lg:flex items-center justify-center w-32 h-12 rounded-full bg-brown text-white border-2 hover:bg-white hover:text-brown hover:border-brown active:scale-95 transition duration-200">
             View All
@@ -46,7 +46,7 @@ const BestCoffe = ({ productData = { data: [], links: [] } }) => {
       </div>
 
       {/* product grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-6">
         {productData.data.map((product, index) => (
           <div
             key={index}
@@ -65,10 +65,9 @@ const BestCoffe = ({ productData = { data: [], links: [] } }) => {
               <h3 className="text-md font-semibold text-gray-800 line-clamp-1">
                 {product.product_name}
               </h3>
-              <p className="text-sm text-gray-500">
-                Rp {parseInt(product.price).toLocaleString('id-ID')}
+              <p className="text-sm text-red-500">
+                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}
               </p>
-
               {/* button md dan sm  */}
               <div className="mt-3 block lg:hidden">
                 <Link href={`/product/${product.id}`}>
@@ -87,6 +86,11 @@ const BestCoffe = ({ productData = { data: [], links: [] } }) => {
             </div>
           </div>
         ))}
+      </div>
+      <div className="flex justify-center mt-12 md:mt-16 bg-transparent lg:hidden">
+        <button className='w-72 h-14 rounded-md bg-dark-brown text-white border-2 hover:bg-white hover:text-brown hover:border-brown active:scale-110 transition duration-200'>
+          View All
+        </button>
       </div>
     </div>
   );

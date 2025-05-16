@@ -2,10 +2,10 @@ import { Link } from '@inertiajs/react';
 
 const BlogSection = ({ blogs }) => {
   return (
-    <section className="max-w-7xl mx-auto px-6 py-12 bg-gray-50">
+    <section className="max-w-7xl mx-auto px-6 py-12">
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
-        <h2 className="text-xl font-serif tracking-widest">READ OUR BLOGS</h2>
+        <h2 className="text-xl text-dark-brown font-semibold font-serif tracking-widest">READ OUR BLOGS</h2>
         <a href="/blog" className="hidden lg:flex items-center justify-center w-32 h-12 rounded-full bg-brown text-white border-2 hover:bg-white hover:text-brown hover:border-brown active:scale-95 transition duration-200">
             View All
           </a>

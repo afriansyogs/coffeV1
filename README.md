@@ -14,5 +14,4 @@ Untuk img dari databse jika menggunakan best practice di simpan di storage milik
 7. php artisan db:seed
 
 ## Catatan kecil
-"Saya ingin menyampaikan permohonan maaf karena proyek ini belum sepenuhnya selesai.
-Saya sempat sakit beberapa hari, sehingga ada keterlambatan dalam pengerjaan. Namun, saya berkomitmen untuk menyelesaikan proyek ini sebelum pukul 5 pagi. Saya sangat berharap dapat memperoleh pengertian dari Anda atas kondisi ini, dan saya sangat menghargai waktu serta kesabaran yang telah diberikan. Terima kasih banyak atas perhatian dan kesempatannya."
+"Saya ingin menyampaikan permohonan maaf karena proyek ini belum sepenuhnya selesai. Saya sempat sakit beberapa hari, sehingga ada keterlambatan dalam pengerjaan. Namun, Saya berkomitmen untuk menyelesaikannya paling lambat hari Minggu sebelum weekdays. Saat ini, saya masih dalam proses pemulihan setelah sakit, sehingga membutuhkan sedikit waktu tambahan agar bisa bekerja dengan fokus dan maksimal. Saya sangat berharap dapat memperoleh pengertian dari Anda atas kondisi ini, dan saya sangat menghargai waktu serta kesabaran yang telah diberikan. Terima kasih banyak atas perhatian dan kesempatannya."

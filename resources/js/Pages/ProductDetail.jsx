@@ -37,7 +37,7 @@ const ProductDetail = () => {
             <h1 className="text-3xl font-bold">{product.product_name}</h1>
             <h1 className="text-xl font-semibold">Stock: {product.stock}</h1>
             <div className="text-3xl font-bold text-red-600">
-              Rp {parseInt(product.price).toLocaleString('id-ID')}
+              {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}
             </div>
 
             <p className="whitespace-pre-line">{product.description}</p>

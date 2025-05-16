@@ -20,12 +20,9 @@ const BannerSection = () => {
           <div className="md:w-1/2 bg-base-200 relative flex flex-col justify-center items-center p-10 text-center">
             <img
               alt="Light coffee beans pattern scattered on a pale background"
-              className="absolute inset-0 w-full h-full object-contain opacity-10 pointer-events-none"
-              height="200"
+              className="absolute inset-0 w-full h-full object-cover opacity-20 pointer-events-none"
               src="https://storage.googleapis.com/a1aa/image/94e86459-526d-4c3f-5165-fad50cc0f5bb.jpg"
-              width="200"
             />
-
             <div className="relative z-10 max-w-md">
               <h2 className="font-playfair text-3xl md:text-4xl font-semibold text-gray-900">
                 SPECIAL{" "}

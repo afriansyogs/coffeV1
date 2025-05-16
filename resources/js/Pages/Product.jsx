@@ -9,7 +9,7 @@ const Product = () => {
   return (
     <>
       <div className="pt-24 mx-4">
-          <h2 className="mt-4 mb-10 text-2xl md:text-4xl font-semibold text-gray-800 text-center">Shop Best Coffe</h2>
+          <h2 className="mt-4 mb-10 text-2xl md:text-4xl font-bold text-dark-brown text-center">Shop Best Coffe</h2>
 
         {/* product grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
@@ -31,8 +31,8 @@ const Product = () => {
               <h3 className="text-md font-semibold text-gray-800 line-clamp-1">
                 {product.product_name}
               </h3>
-              <p className="text-sm text-gray-500">
-                Rp {parseInt(product.price).toLocaleString('id-ID')}
+              <p className="text-sm text-red-500">
+                {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}
               </p>
               {/* button md dan sm  */}
               <div className="mt-3 block lg:hidden">
@@ -63,8 +63,8 @@ const Product = () => {
               onClick={() => link.url && router.visit(link.url)}
               dangerouslySetInnerHTML={{ __html: link.label }}
               className={`px-4 py-2 border text-sm mx-1 rounded ${link.active
-                  ? 'bg-red-600 text-white'
-                  : 'bg-white text-gray-700 hover:bg-red-100'
+                  ? 'bg-dark-brown text-white'
+                  : 'bg-white text-gray-700 hover:bg-brown hover:text-white'
                 } ${!link.url ? 'cursor-not-allowed text-gray-400' : ''}`}
             />
           ))}

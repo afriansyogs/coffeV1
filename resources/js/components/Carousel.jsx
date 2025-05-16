@@ -20,12 +20,12 @@ const Carousel = () => {
   const prevSlide = () => setCurrentSlide((prev) => (prev === 1 ? 3 : prev - 1));
   return (
     <>
-      <div className="relative w-full bg-brown-900 text-white md:py-10 mt-20 overflow-hidden">
+      <div className="relative w-full bg-brown-900 text-white md:py-10 mt-20 overflow-hidden bg-[#faf9f7]">
         <div className="flex transition-transform duration-700 ease-in-out" style={{ transform: `translateX(-${(currentSlide - 1) * 100}%)` }}>
           {carouselData.map((item, index) => (
             <div key={index} className="w-full flex-shrink-0 text-center">
               <h1 className="text-xl font-semibold text-brown w-3/4 mx-auto">"{item.description}"</h1>
-              <p className="text-lg text-dark-brown mt-2 font-semibold">{item.name}</p>
+              <p className="text-lg text-dark-brown mt-2 font-bold">{item.name}</p>
             </div>
           ))}
         </div>

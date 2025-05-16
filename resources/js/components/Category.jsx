@@ -23,7 +23,7 @@ const Category = ({ categoryData }) => {
                     className="w-full sm:w-1/2 h-64 object-cover rounded shadow" 
                   />
                   <div className="text-center sm:text-left px-4">
-                    <h3 className="text-xl font-semibold mb-2">{category.category_name}</h3>
+                    <h3 className="text-xl font-bold mb-2">{category.category_name}</h3>
                     <p className="text-gray-600 mb-3">{category.description}</p>
                   </div>
                 </div>
@@ -51,7 +51,7 @@ const Category = ({ categoryData }) => {
                         className="w-1/2 h-64 object-cover rounded shadow" 
                       />
                       <div className="text-left px-4">
-                        <h3 className="text-xl font-semibold mb-2">{category.category_name}</h3>
+                        <h3 className="text-xl font-bold mb-2">{category.category_name}</h3>
                         <p className="text-gray-600 mb-3">{category.description}</p>
                       </div>
                     </div>
