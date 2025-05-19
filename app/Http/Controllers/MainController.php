@@ -3,10 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
+use App\Models\Cart;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\Order_item;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class MainController extends Controller
 {
@@ -57,10 +62,122 @@ class MainController extends Controller
     }
 
     public function cartPage() {
-        return inertia::render('Cart');
+    $user = Auth::user();
+
+    // if (!$user) {
+    //     return redirect()->route('login');
+    // }
+
+    $cartItems = Cart::with('product')
+        ->where('user_id', $user->id)
+        ->get();
+
+    foreach ($cartItems as $item) {
+        if ($item->product && $item->product->stock <= 0) {
+            $item->delete();
+        }
     }
+
+    $cartItems = Cart::with('product')
+        ->where('user_id', $user->id)
+        ->get();
+
+    return Inertia::render('Cart', [
+        'cartItems' => $cartItems,
+    ]);
+}
+
 
     public function favoritePage() {
         return inertia::render('Favorite');
     }
+
+    public function addToCart(Request $request) {
+        $user = Auth::id();
+        $productId = $request->input('productId');
+
+        Cart::create([
+            'user_id' => $user,
+            'product_id' => $productId,
+            'qty' => 1
+        ]);
+
+        return redirect()->route('cart.index')->with('success', 'Produk berhasil ditambahkan ke keranjang.');
+    }
+
+    public function formCheckout(Request $request) {
+        $user = auth::user();
+        $selectedIds = explode(',', $request->query('items'));
+        $cartItems =  Cart::where('user_id', $user->id)
+                        ->whereIn('id', $selectedIds)
+                        ->get();
+
+        $totalPrice = $cartItems->sum(fn($item) => $item->product->price * $item->qty);
+
+        return Inertia::render('FormCheckout', [
+            'cartItems' => $cartItems,
+            'totalPrice' => $totalPrice,
+        ]);
+    }
+
+    public function checkout(Request $request) {
+        $validated = $request->validate([
+            'total' => 'required|numeric',
+            'payment_method' => 'required|in:qris,in_store_pickup',
+            'shipping_address' => $request->payment_method === 'in_store_pickup' ? '' : 'required|string',
+            'items' => 'required|array',
+            'items.*.id' => 'required|exists:cart_items,id',
+        ]);
+        
+        try {
+            // Use transaction to ensure all operations succeed or fail together
+            DB::beginTransaction();
+            
+            // Create the order
+            $order = Order::create([
+                'user_id' => Auth::id(),
+                'total' => $validated['total'],
+                'payment_method' => $validated['payment_method'],
+                'shipping_address' => $validated['shipping_address'] ?? null,
+                'status' => 'pending',
+            ]);
+            
+            // Process each item in the order
+            foreach ($validated['items'] as $item) {
+                $cartItem = Cart::with('product')->find($item['id']);
+                
+                if (!$cartItem) {
+                    continue; // Skip if cart item not found
+                }
+                
+                // Create order item
+                Order::create([
+                    'order_id' => $order->id,
+                    'product_id' => $cartItem->product_id,
+                    'qty' => $cartItem->qty,
+                    'price' => $cartItem->product->price,
+                ]);
+                
+                // Remove item from cart
+                $cartItem->delete();
+            }
+            
+            DB::commit();
+            
+            // Redirect to order details page
+            return redirect()->route('orders.show', $order->id)
+                ->with('success', 'Pesanan berhasil dibuat!');
+                
+        } catch (\Exception $e) {
+            DB::rollBack();
+            
+            // Log the error
+            // \Log::error('Order creation failed: ' . $e->getMessage());
+            
+            // Redirect back with error
+            return redirect()->back()
+                ->with('error', 'Terjadi kesalahan saat membuat pesanan. Silakan coba lagi.');
+        }
+    }
+
 }

@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import { usePage } from '@inertiajs/react';
+import { Link } from '@inertiajs/react';
+import { router } from "@inertiajs/react";
 import MainLayout from '../layouts/MainLayout';
 
 const ProductDetail = () => {
   const { product } = usePage().props;
   const [mainImage, setMainImage] = useState(JSON.parse(product.product_img)[0]);
+  const handleAddToCart = () => {
+    router.post("/cart/add", { productId: product.id });
+  }
   return(
     <>
       <div className="bg-transparent">
@@ -43,13 +48,20 @@ const ProductDetail = () => {
             <p className="whitespace-pre-line">{product.description}</p>
 
             <div>
-              <button
+              {product.stock === 0 ? (<Link
+                href={'/product'}
                 type="button"
-                className="flex justify-center items-center px-6 py-3 border border-black text-white bg-dark-brown hover:bg-brown rounded-lg w-full"
+                className="flex justify-center items-center px-6 py-3 border border-black text-white bg-slate-500 rounded-lg w-full"
+              >
+                <span className="ms-3">Find Other Product</span>
+              </Link>) : (<button
+                onClick={handleAddToCart}
+                type="button"
+                className="flex justify-center items-center px-6 py-3 border border-black text-white bg-dark-brown rounded-lg w-full"
               >
                 <i className="fa-solid fa-cart-plus"></i>
-                <span className="ms-3">Keranjang</span>
-              </button>
+                <span className="ms-3">Add to Cart</span>
+              </button>)}
             </div>
           </div>
         </div>

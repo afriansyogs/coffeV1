@@ -35,7 +35,7 @@ const Product = () => {
                 {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(product.price)}
               </p>
               {/* button md dan sm  */}
-              <div className="mt-3 block lg:hidden">
+              <div className="mt-3 block lg:hidden z-10">
                 <Link href={`/product/${product.id}`}>
                   <button className="btn btn-sm btn-neutral w-full bg-brown">Show</button>
                 </Link>
@@ -43,7 +43,7 @@ const Product = () => {
             </div>
           
             {/* Hover Overlay product */}
-            <div className="absolute inset-0 bg-black bg-opacity-0 lg:group-hover:bg-opacity-40 flex items-center justify-center transition-all duration-300">
+            <div className="hidden absolute inset-0 bg-black bg-opacity-0 lg:group-hover:bg-opacity-40 lg:flex items-center justify-center transition-all duration-300">
               <div className="opacity-0 lg:group-hover:opacity-100 transition-opacity duration-300">
                 <Link href={`/product/${product.id}`}>
                   <button className="btn btn-active shadow-md">Show</button>

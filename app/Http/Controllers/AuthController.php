@@ -60,7 +60,7 @@ class AuthController extends Controller
         $user = Auth::user();
         if ($user->role !== 'user') {
             Auth::logout();
-            return redirect()->route('loginPage')->withErrors(['email' => 'Unauthorized access.']);
+            return redirect()->route('login')->withErrors(['email' => 'Unauthorized access.']);
         }
         return redirect('/');
         }
@@ -69,6 +69,6 @@ class AuthController extends Controller
 
     public function logout() {
         Auth::logout();
-        return redirect()->route('loginPage')->with('success', 'You have Successfully Logout');
+        return redirect()->route('login')->with('success', 'You have Successfully Logout');
     }
 }
