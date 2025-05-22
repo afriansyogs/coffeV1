@@ -16,7 +16,6 @@ const Gallery = () => {
   <div className="text-center mb-6 px-4">
     <h2 className="text-lg font-semibold tracking-wide uppercase">
       Follow our Instagram <span className="text-dark-brown">#COFFE</span>
-      <div class="w-80 h-1 bg-gradient-to-r from-[#8c4f1b] to-[#e6b800] mx-auto rounded-full mt-2"></div>
       <div className="w-80 h-1 bg-gradient-to-r from-[#8c4f1b] to-[#e6b800] mx-auto rounded-full mt-2"></div>
     </h2>
   </div>

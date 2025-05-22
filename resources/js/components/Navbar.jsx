@@ -54,13 +54,17 @@ const Navbar = () => {
             </svg>
           </label>
           <>
-            <div className="flex md:space-x-2 lg:ms-4">
+            {auth.user ? (<div className="flex md:space-x-2 lg:ms-4">
               {menuData.filter(item => item.position == "end").map((item, index) => (
                 <div key={index} className={`rounded-full px-3 py-2 text-brown hover:bg-brown hover:text-white cursor-pointer ${isActive(item.url) ? " text-white bg-brown" : ""}`}>
                   <a href={item.url} className={item.icon}></a>
                 </div>
               ))}
-            </div>
+            </div>) : (<a href="/login" className="lg:ms-4 px-7 py-2 border-2 border-dark-brown rounded-full bg-brown 
+          text-white hover:bg-white hover:text-brown font-bold active:scale-95">
+              Login
+            </a>)
+            }
           </>
           <button className="rounded-full px-3 py-2 ms-2 text-brown hover:bg-brown hover:text-white lg:hidden"
             onClick={() => setIsOpen(!open)}>
