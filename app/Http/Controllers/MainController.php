@@ -61,31 +61,45 @@ class MainController extends Controller
         ]);
     }
 
-    public function cartPage() {
-    $user = Auth::user();
-
-    // if (!$user) {
-    //     return redirect()->route('login');
-    // }
-
-    $cartItems = Cart::with('product')
-        ->where('user_id', $user->id)
-        ->get();
-
-    foreach ($cartItems as $item) {
-        if ($item->product && $item->product->stock <= 0) {
-            $item->delete();
+    public function profilePage() {
+        $userDetail = Auth::user();
+        if ($userDetail) {
+            return inertia::render('Profile',[
+                'userDetail' => $userDetail
+            ]);
         }
     }
 
-    $cartItems = Cart::with('product')
-        ->where('user_id', $user->id)
-        ->get();
+    public function cartPage(){
+        $user = Auth::user();
 
-    return Inertia::render('Cart', [
-        'cartItems' => $cartItems,
-    ]);
-}
+        // if (!$user) {
+        //     return redirect()->route('login');
+        // }
+
+        $cartItems = Cart::with('product')
+            ->where('user_id', $user->id)
+            ->get();
+
+        foreach ($cartItems as $item) {
+            if ($item->product && $item->product->stock <= 0) {
+                $item->delete();
+            }
+        }
+
+        $cartItems = Cart::with('product')
+            ->where('user_id', $user->id)
+            ->get();
+
+        return Inertia::render('Cart', [
+            'cartItems' => $cartItems,
+        ]);
+    }
+
+    public function deleteCartItem($id) {
+        Cart::destroy($id);
+        return redirect()->route('cart.index');
+    }
 
 
     public function favoritePage() {
@@ -108,6 +122,7 @@ class MainController extends Controller
     public function formCheckout(Request $request) {
         $user = auth::user();
         $selectedIds = explode(',', $request->query('items'));
+        // dd($selectedIds);
         $cartItems =  Cart::where('user_id', $user->id)
                         ->whereIn('id', $selectedIds)
                         ->get();
@@ -120,13 +135,14 @@ class MainController extends Controller
         ]);
     }
 
-    public function checkout(Request $request) {
+    public function createOrder(Request $request) {
+        $user = Auth::id();
         $validated = $request->validate([
             'total' => 'required|numeric',
             'payment_method' => 'required|in:qris,in_store_pickup',
             'shipping_address' => $request->payment_method === 'in_store_pickup' ? '' : 'required|string',
             'items' => 'required|array',
-            'items.*.id' => 'required|exists:cart_items,id',
+            'items.*.id' => 'required|exists:carts,id',
         ]);
         
         try {
@@ -135,7 +151,7 @@ class MainController extends Controller
             
             // Create the order
             $order = Order::create([
-                'user_id' => Auth::id(),
+                'user_id' => $user,
                 'total' => $validated['total'],
                 'payment_method' => $validated['payment_method'],
                 'shipping_address' => $validated['shipping_address'] ?? null,
@@ -151,7 +167,7 @@ class MainController extends Controller
                 }
                 
                 // Create order item
-                Order::create([
+                Order_item::create([
                     'order_id' => $order->id,
                     'product_id' => $cartItem->product_id,
                     'qty' => $cartItem->qty,
@@ -165,7 +181,7 @@ class MainController extends Controller
             DB::commit();
             
             // Redirect to order details page
-            return redirect()->route('orders.show', $order->id)
+            return redirect()->route('home', $order->id)
                 ->with('success', 'Pesanan berhasil dibuat!');
                 
         } catch (\Exception $e) {

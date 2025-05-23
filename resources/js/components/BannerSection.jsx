@@ -3,10 +3,10 @@ import React from "react";
 const BannerSection = () => {
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center p-4 pt-24">
+      <div className="min-h-screen flex items-center justify-center p-4 pt-24 lg:pt-16">
         <div className="w-full mx-4 bg-white rounded-xl flex flex-col md:flex-row overflow-hidden shadow-smz">
           {/* Bagian Gambar */}
-          <div className="md:w-1/2 md:h-[500px]">
+          <div className="md:w-1/2 md:h-[500px] lg:h-600px">
             <img
               alt="Hand holding a brown paper bag of specialty coffee with a white label, wooden beams in the background"
               className="w-full h-full object-cover"

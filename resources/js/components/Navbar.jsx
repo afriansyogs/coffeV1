@@ -10,6 +10,7 @@ const Navbar = () => {
     {title:"Blog", url:"/blog", position:"start"},
     {title:"Favorite", url:"/favorite", icon:"fa-solid fa-heart", position:"end"},
     {title:"Cart", url:"/cart", icon:"fa-solid fa-cart-shopping", position:"end"},
+    {title:"User", url:"/profile", icon:"fa-solid fa-user", position:"end"},
   ];
   const [open, setIsOpen] = useState(false)
   const pathName = window.location.pathname;

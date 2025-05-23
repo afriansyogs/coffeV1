@@ -18,13 +18,18 @@ Route::middleware(['web', 'auth'])->group(function () {
   // cart 
   Route::get('/cart', [MainController::class, 'cartPage'])->name('cart.index');
   Route::post('/cart/add', [MainController::class, 'addToCart'])->name('addToCart');
+  Route::delete('/cart/{id}', [MainController::class, 'deleteCartItem'])->name('deleteCart');
 
   // checkout 
-  Route::get('/checkout/form', [MainController::class, 'formCheckout'])->name('formCheckout');
-  Route::post('/checkout', [MainController::class, 'store'])->name('checkout.store');
+  Route::get('/formCheckout', [MainController::class, 'formCheckout'])->name('formCheckout');
+  Route::post('/createOrder', [MainController::class, 'createOrder'])->name('createOrder');
 
   // favorite 
   Route::get('/favorite', [MainController::class, 'favoritePage'])->name('favorite.index');
+  
+  // profile
+  Route::get('/profile', [MainController::class, 'profilePage'])->name('profilePage');
+  
 });
 
 // pages route

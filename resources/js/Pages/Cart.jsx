@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { usePage, Link,router } from "@inertiajs/react";
 import MainLayout from "../layouts/MainLayout";
-import FormCheckout from "./formCheckout";
+import FormCheckout from "./FormCheckout";
 
 const Cart = () => {
   const { cartItems } = usePage().props;
@@ -25,9 +25,15 @@ const Cart = () => {
   );
 
   const handleCheckout = () => {
-    if (selectedItems.length > 0) {
-      router.visit(`/checkout?items=${selectedItems.join(',')}`);
-    }
+    // if (selectedItems.length > 0) {
+    //   router.visit(`/checkout?items=${selectedItems.join(',')}`);
+    // }
+    const queryString = selectedItems.join(",");
+    router.get(`/formCheckout?items=${queryString}`);
+  };
+
+  const handleDeleteCartItem = (id) => {
+    router.delete(`/cart/${id}`);
   };
 
   return (
@@ -46,8 +52,8 @@ const Cart = () => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* List Item */}
         <div className="lg:col-span-2 space-y-6">
-          {cartItems.map((item) => (
-            <div key={item.id} className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-md">
+          {cartItems.map((item, index) => (
+            <div key={index} className="flex items-center gap-4 p-4 bg-white rounded-lg shadow-md">
               <input
                 type="checkbox"
                 checked={selectedItems.includes(item.id)}
@@ -67,6 +73,9 @@ const Cart = () => {
                 </p>
               </div>
               {/* Tombol hapus bisa ditambahkan */}
+              <button onClick={() => handleDeleteCartItem(item.id)} className="btn btn-error btn-sm btn-outline w-auto pt-3 pb-6 flex justify-center items-center">
+                <i className="fa-solid fa-trash"></i>
+              </button>
             </div>
           ))}
         </div>
@@ -99,16 +108,17 @@ const Cart = () => {
             <FormCheckout selectedItems={selectedItems} totalPrice={totalPrice} />
           )} */}
 
-{/* <button
-  className="btn btn-primary"
-  disabled={selectedItems.length === 0}
-  onClick={() => {
-    const selectedIds = selectedItems.map(item => item.id).join(',');
-    router.visit(`/checkout/form?items=${selectedIds}`);
-  }}
->
-  Checkout
-</button> */}
+              <button
+                className="btn btn-primary"
+                disabled={selectedItems.length === 0}
+                // onClick={() => {
+                //   const selectedIds = selectedItems.map(item => item.id).join(',');
+                //   router.visit(`/checkout/form?items=${selectedIds}`);
+                // }}
+                onClick={handleCheckout}
+              >
+                Checkout
+              </button>
 
         </div>
       </div>
