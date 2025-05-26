@@ -4,6 +4,22 @@ import MainLayout from '../layouts/MainLayout';
 
 const Order = () => {
   const { orders } = usePage().props;
+
+  const statusColor = (status) => {
+    switch (status) {
+      case 'pending':
+        return 'text-gray-500';
+      case 'processing':
+        return 'text-blue-400';
+      case 'completed':
+        return 'text-green-500';
+      case 'cancelled':
+        return 'text-red-500';
+      default:
+        return '';
+    }
+  };
+  
   return(
     <>
       <div className="max-w-7xl mx-auto px-4 py-8">
@@ -22,15 +38,17 @@ const Order = () => {
                   <div>
                     <p className="text-lg font-semibold">Order #{order.id}</p>
                     <p className="text-sm text-gray-600">
-                      Metode: <span className="font-medium">{order.payment_method}</span>
+                      Metode: <span className="font-medium text-black">{order.payment_method}</span>
                     </p>
                     <p className="text-sm text-gray-600">
-                      Status: <span className="text-blue-600">{order.status}</span>
+                      Status: <span className={`font-semibold ${statusColor(order.status)}`}>{order.status}</span>
                     </p>
                   </div>
                   <div className="text-right">
-                    <p className="text-sm text-gray-500">Tanggal: {new Date(order.created_at).toLocaleDateString()}</p>
-                    <p className="text-xl font-bold text-brown">Rp {order.total.toLocaleString()}</p>
+                    <p className="text-sm text-gray-500">Date: {new Date(order.created_at).toLocaleDateString()}</p>
+                    <p className="text-xl font-bold text-black">                        
+                      {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(order.total)}
+                    </p>
                   </div>
                 </div>
 
@@ -48,8 +66,8 @@ const Order = () => {
                           <p className="text-sm text-gray-500">Qty: {item.qty}</p>
                         </div>
                       </div>
-                      <div className="text-right text-brown font-semibold">
-                        Rp {item.price.toLocaleString()}
+                      <div className="text-right text-red-500 font-semibold">
+                        {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item.price)}
                       </div>
                     </div>
                   ))}

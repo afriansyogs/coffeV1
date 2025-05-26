@@ -42,16 +42,16 @@ export default function FormCheckout() {
       </div>
     </div>
       <div className="mb-4">
-        <label>Metode Pembayaran</label>
+        <label>Metode</label>
         <select
           className="select select-bordered w-full"
           value={paymentMethod}
           onChange={(e) => setPaymentMethod(e.target.value)}
           required
         >
-          <option value="">Pilih Metode</option>
+          <option value="">Select Metode</option>
           <option value="qris">QRIS</option>
-          <option value="in_store_pickup">Ambil di Toko</option>
+          <option value="in_store_pickup">Pickup In Store</option>
         </select>
       </div>
 
@@ -78,8 +78,11 @@ export default function FormCheckout() {
         </div>
       )}
 
-      <div className="mb-4">
-        <p>Total: Rp {totalPrice.toLocaleString("id-ID")}</p>
+      <div className="mb-4 flex">
+        <p>Total: </p>
+        <span className='font-bold text-black ms-1'>
+        {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(totalPrice)}
+        </span>
       </div>
 
       <button

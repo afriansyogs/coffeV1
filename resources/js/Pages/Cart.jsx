@@ -43,9 +43,9 @@ const Cart = () => {
     {cartItems.length === 0 ? (
       <div className="text-center py-20">
         <img src="/assets/img/cart_empty1.png" alt="Empty cart" className="mx-auto w-52 h-auto mb-6" />
-        <p className="text-gray-600 text-lg mb-4">Wah, keranjangmu masih kosong!</p>
+        <p className="text-gray-600 text-lg mb-4">Waw, Your Cart Stil Empty!</p>
         <Link href="/product">
-          <button className="btn btn-primary px-6">Belanja Sekarang</button>
+          <button className="btn bg-dark-brown text-white px-6 py-3 rounded-lg hover:bg-dark-brown transition">Shop Now</button>
         </Link>
       </div>
     ) : (
@@ -67,9 +67,9 @@ const Cart = () => {
               />
               <div className="flex-1">
                 <h3 className="text-lg font-semibold text-gray-800">{item.product.product_name}</h3>
-                <p className="text-sm text-gray-500">Qty: {item.qty}</p>
-                <p className="text-sm text-gray-500">
-                  Rp {item.product.price.toLocaleString("id-ID")}
+                <p className="text-sm text-black">Qty: {item.qty}</p>
+                <p className="text-sm text-red-500 mt-1">
+                  {new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(item.product.price)}
                 </p>
               </div>
               {/* Tombol hapus bisa ditambahkan */}
