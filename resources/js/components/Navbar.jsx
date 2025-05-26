@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { usePage } from '@inertiajs/react';
 import { useLocation } from "react-router-dom";
+import DropdownProfile from './DropdownProfile';
 
 const Navbar = () => {
   const { auth } = usePage().props;
@@ -10,9 +11,10 @@ const Navbar = () => {
     {title:"Blog", url:"/blog", position:"start"},
     {title:"Favorite", url:"/favorite", icon:"fa-solid fa-heart", position:"end"},
     {title:"Cart", url:"/cart", icon:"fa-solid fa-cart-shopping", position:"end"},
-    {title:"User", url:"/profile", icon:"fa-solid fa-user", position:"end"},
+    {title:"User", icon:"fa-solid fa-user", position:"end"},
   ];
   const [open, setIsOpen] = useState(false)
+  const [showUserMenu, setShowUserMenu] = useState(false);
   const pathName = window.location.pathname;
   const isActive = (url) => pathName === url; 
   
@@ -55,10 +57,18 @@ const Navbar = () => {
             </svg>
           </label>
           <>
-            {auth.user ? (<div className="flex md:space-x-2 lg:ms-4">
-              {menuData.filter(item => item.position == "end").map((item, index) => (
-                <div key={index} className={`rounded-full px-3 py-2 text-brown hover:bg-brown hover:text-white cursor-pointer ${isActive(item.url) ? " text-white bg-brown" : ""}`}>
+            {auth.user ? (<div className="flex md:space-x-2 lg:ms-4 relative">
+              {menuData.filter(item => item.position === "end").map((item, index) => (
+                <div
+                  key={index}
+                  className={`rounded-full px-3 py-2 text-brown hover:bg-brown hover:text-white cursor-pointer ${item.title === "User" ? "relative" : ""
+                    }`}
+                  // onMouseEnter={() => item.title === "User" && setShowUserMenu(true)}
+                  // onMouseLeave={() => item.title === "User" && setShowUserMenu(false)}
+                  onClick={() => item.title === "User" && setShowUserMenu(true)}
+                >
                   <a href={item.url} className={item.icon}></a>
+                  {item.title === "User" && <DropdownProfile show={showUserMenu} setShowUserMenu={setShowUserMenu} />}
                 </div>
               ))}
             </div>) : (<a href="/login" className="lg:ms-4 px-7 py-2 border-2 border-dark-brown rounded-full bg-brown 

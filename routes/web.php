@@ -30,6 +30,9 @@ Route::middleware(['web', 'auth'])->group(function () {
   // profile
   Route::get('/profile', [MainController::class, 'profilePage'])->name('profilePage');
   
+  // order
+  Route::get('/order', [MainController::class, 'orderPage'])->name('orderPage');
+  
 });
 
 // pages route
@@ -41,5 +44,3 @@ Route::get('/product/{id}', [MainController::class, 'productDetail'])->name('pro
 Route::get('/blog', [MainController::class, 'blogPage'])->name('blog.index');
 Route::get('/blog/{id}', [MainController::class, 'blogDetail'])->name('blog.show');
 
-
-// Route::post('/orders', [MainController::class, 'checkout'])->name('orders.store');

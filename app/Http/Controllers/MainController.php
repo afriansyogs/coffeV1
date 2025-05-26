@@ -196,4 +196,15 @@ class MainController extends Controller
         }
     }
 
+    public function orderPage() {
+        $user = Auth::id();
+        $orders = Order::with('orderItems.product')
+                        ->where('user_id', $user)
+                        ->latest()
+                        ->get();
+
+        return inertia::render('Order' , [
+            'orders' => $orders
+        ]);
+    }
 }

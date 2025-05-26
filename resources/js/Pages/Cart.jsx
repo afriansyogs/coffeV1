@@ -42,7 +42,7 @@ const Cart = () => {
 
     {cartItems.length === 0 ? (
       <div className="text-center py-20">
-        <img src="/assets/img/empty_cart.svg" alt="Empty cart" className="mx-auto w-52 h-auto mb-6" />
+        <img src="/assets/img/cart_empty1.png" alt="Empty cart" className="mx-auto w-52 h-auto mb-6" />
         <p className="text-gray-600 text-lg mb-4">Wah, keranjangmu masih kosong!</p>
         <Link href="/product">
           <button className="btn btn-primary px-6">Belanja Sekarang</button>
