@@ -1,8 +1,9 @@
 import { useState } from 'react';
 // import { router } from '@inertiajs/react';
 import { usePage, Link, router } from "@inertiajs/react";
+import MainLayout from '../layouts/MainLayout';
 
-export default function FormCheckout() {
+const  FormCheckout = () => {
   const [paymentMethod, setPaymentMethod] = useState('');
   const [shippingAddress, setShippingAddress] = useState('');
   const { cartItems, totalPrice } = usePage().props;
@@ -19,8 +20,8 @@ export default function FormCheckout() {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md">
-      <h2 className="text-xl font-bold mb-4">Checkout</h2>
-      <div className="p-5 space-y-4">
+      <h2 className="text-2xl text-center font-bold mb-4 mt-20">Checkout</h2>
+      <div className="p-5 space-y-4 mt-5">
       {cartItems.map((item, index) => (
         <div key={index} className="card lg:card-side bg-base-100 shadow-xl p-5">
           <figure className=''>
@@ -95,3 +96,6 @@ export default function FormCheckout() {
     </form>
   );
 }
+
+FormCheckout.layout = (page) => <MainLayout children={page} />;
+export default FormCheckout;
